@@ -6,8 +6,6 @@ document.body.append(svgElem);
 /** D3 svg element */
 const svg = d3.select(svgElem);
 
-
-
 /** Color scheme */
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -25,14 +23,12 @@ export default function visualize(brain, config) {
     }
   }, config)
 
-
   const {
     links,
     neurons
   } = brain;
 
   const linksArr = Object.values(links);
-
 
   const simulation = d3.forceSimulation(neurons)
     .force('link', d3.forceLink(linksArr).id(d => d.id).distance(10))
@@ -59,7 +55,7 @@ export default function visualize(brain, config) {
   if (configuration.allowDrag) {
     node.call(d3.drag()
       .on('start', d => {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        if (!d3.event.active) {simulation.alphaTarget(0.3).restart();}
         d.fx = d.x;
         d.fy = d.y;
       })
@@ -68,7 +64,7 @@ export default function visualize(brain, config) {
         d.fy = d3.event.y;
       })
       .on('end', d => {
-        if (!d3.event.active) simulation.alphaTarget(0);
+        if (!d3.event.active) {simulation.alphaTarget(0);}
         d.fx = null;
         d.fy = null;
       }))

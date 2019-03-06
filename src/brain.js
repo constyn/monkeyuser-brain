@@ -1,14 +1,12 @@
 import uuid from 'uuid4';
 
 const defaultConfig = {
-  neuronsCount: 100,
+  neuronsCount: 1000,
   maxLinks: 2,
   learningFactor: 0.01,
   unlinkFactor: 0.02,
   stepCleanup: 10,
-  weightInitializer: (left, right) => {
-    return 0.1 + 0.2 * Math.random();
-  }
+  weightInitializer: (left, right) => 0.1 + 0.2 * Math.random()
 }
 
 let hadStimulus = false;
@@ -29,7 +27,6 @@ class Neuron {
   }
 
   stimulate(forceValue) {
-
     if (forceValue) {
       hadStimulus = true;
     }
@@ -137,7 +134,7 @@ export default class Brain {
 
   borrowSpecializedNode(name) {
     let specialized;
-    while (specialized === undefined) {
+    while (!specialized) {
       let neuron = this.neurons[Math.floor(Math.random() * this.neurons.length)];
       if (!neuron.isSpecialized) {
         specialized = neuron;

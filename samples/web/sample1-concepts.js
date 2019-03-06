@@ -5,7 +5,7 @@ import {
 const TRAINING_STEPS = 10;
 
 const brain = new Brain({
-  neurons: 300,
+  neurons: 100000,
   maxLinks: 2,
   stepCleanup: 10
 });
@@ -16,15 +16,15 @@ const [cat, lion, feline, rat, mouse, rodent] = [
   brain.borrowSpecializedNode('feline'),
   brain.borrowSpecializedNode('rat'),
   brain.borrowSpecializedNode('mouse'),
-  brain.borrowSpecializedNode('rodent'),
+  brain.borrowSpecializedNode('rodent')
 ];
 
 /** Train the network in pairs cat + feline and lion + feline */
 for (let group of [
     [cat, feline],
-    [lion, feline],
-    //[rat, rodent],
-    //[mouse, rodent]
+    [lion, feline]
+    // [rat, rodent],
+    // [mouse, rodent]
   ]) {
   for (let j = 0; j < TRAINING_STEPS; j++) {
     group[0].stimulate(1);

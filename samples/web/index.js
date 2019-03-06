@@ -1,6 +1,7 @@
-import brain from './sample1-concepts';
+import brain from './sample2-concepts';
+
 import visualize from './visualizer';
 
-let tools = visualize(brain);
+let tools = visualize(brain.getVisData());
 
-console.log(tools);
+console.log(brain);
